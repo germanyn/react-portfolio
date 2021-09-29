@@ -1,21 +1,21 @@
-import { AppBar, Button, Toolbar, } from '@material-ui/core';
+import { AppBar, Button, Toolbar } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 
 const AppLayout: React.FC = (props) => {
 	return (
 		<LayoutRoot>
-			{/* <AppBar>
+			<AppBar>
 				<Toolbar>
 					<Button color="inherit">Login</Button>
 				</Toolbar>
-			</AppBar> */}
-			<LayoutWrapper>
+			</AppBar>
+			{/* <LayoutWrapper> */}
 				<LayoutContainer>
 					<LayoutContent>
 						{props.children}
 					</LayoutContent>
 				</LayoutContainer>
-			</LayoutWrapper>
+			{/* </LayoutWrapper> */}
 		</LayoutRoot>
 	);
 }
@@ -30,17 +30,17 @@ const LayoutRoot = styled('div')(
 	})
 );
 
-const LayoutWrapper = styled('div')(
-	({ theme }) => ({
-		display: 'flex',
-		flex: '1 1 auto',
-		overflow: 'hidden',
-		paddingTop: 64,
-		[theme.breakpoints.up('lg')]: {
-			paddingLeft: 256
-		}
-	})
-);
+// const LayoutWrapper = styled('div')(
+// 	({ theme }) => ({
+// 		display: 'flex',
+// 		flex: '1 1 auto',
+// 		overflow: 'hidden',
+// 		paddingTop: 64,
+// 		[theme.breakpoints.up('lg')]: {
+// 			paddingLeft: 256
+// 		}
+// 	})
+// );
 
 const LayoutContainer = styled('div')({
 	display: 'flex',
