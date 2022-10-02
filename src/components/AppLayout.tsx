@@ -1,5 +1,4 @@
-import { AppBar, Button, Toolbar } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { AppBar, Button, styled, Toolbar } from '@mui/material';
 
 const AppLayout: React.FC = (props) => {
 	return (
