@@ -1,6 +1,7 @@
 import {
 	AppBar, Box, Button,
-	CardActionArea, createTheme, CssBaseline, Dialog,
+	Card,
+	CardActionArea, CardContent, createTheme, CssBaseline, Dialog,
 	DialogContent,
 	DialogTitle,
 	Grid, Paper, StyledEngineProvider, ThemeProvider, Toolbar,
@@ -15,12 +16,14 @@ import MyStoryLine from './components/MyStoryLine';
 import MySummary from './components/MySummary';
 import ProjectCard from './components/ProjectCard';
 import { ImageDisplay } from './components/SelectableImage';
+import { projects } from './data/projects';
 
 const App: React.FC = (props) => {
 	const theme = createTheme()
 	// const root = useRef<HTMLDivElement>(document.getElementById('root'))
 	const myProjectsSection = useRef<HTMLDivElement>(null)
 	const aboutMeSection = useRef<HTMLDivElement>(null)
+	const sayHiSection = useRef<HTMLDivElement>(null)
 	const [selectedImage, setSelectedImage] = useState<ImageDisplay | null>(null)
 
 	const sections: PageSection[] = [
@@ -31,6 +34,10 @@ const App: React.FC = (props) => {
 		{
 			description: 'About Me',
 			ref: aboutMeSection,
+		},
+		{
+			description: 'Say Hi',
+			ref: sayHiSection,
 		},
 	]
 	const activeSection = useScrollSpy({
@@ -48,40 +55,6 @@ const App: React.FC = (props) => {
 	const scrollToProjects = () => {
 		scrollTo(myProjectsSection)
 	}
-
-	const almodeFeaturedImage: ImageDisplay = {
-		description: 'Ongoing sale',
-		url: `${process.env.PUBLIC_URL}/img/almode/almode-2.png`,
-	}
-	const almodeImages: ImageDisplay[] = [
-		{
-			description: 'Cash open',
-			url: `${process.env.PUBLIC_URL}/img/almode/almode-1.png`,
-		},
-		{
-			description: 'Payment process',
-			url: `${process.env.PUBLIC_URL}/img/almode/almode-3.png`,
-		},
-		{
-			description: 'Sales (darkmode)',
-			url: `${process.env.PUBLIC_URL}/img/almode/almode-4.png`,
-		},
-	]
-
-	const selfMenuImages: ImageDisplay[] = [
-		{
-			description: 'Admin view',
-			url: `${process.env.PUBLIC_URL}/img/self-menu/self-menu-1.png`,
-		},
-		{
-			description: 'QR Code generation',
-			url: `${process.env.PUBLIC_URL}/img/self-menu/self-menu-2.png`,
-		},
-		{
-			description: 'Order screen',
-			url: `${process.env.PUBLIC_URL}/img/self-menu/self-menu-3.png`,
-		},
-	]
 
 	const snapProperties: React.CSSProperties = {
 		scrollMarginTop: theme.mixins.toolbar.minHeight,
@@ -166,7 +139,7 @@ const App: React.FC = (props) => {
 								onClick={scrollToProjects}
 							>
 								<Typography variant="subtitle1">
-									<div> Check my projects </div>
+									<div> Check out my projects! </div>
 									<ChevronDown />
 								</Typography>
 							</CardActionArea>
@@ -193,38 +166,14 @@ const App: React.FC = (props) => {
 								>
 									<Typography variant="h2" align="center" gutterBottom> Projects </Typography>
 								</Grid>
-								<Grid item style={{ ...snapProperties }}>
-									<ProjectCard
-										title="Almode PDV"
-										description="Complete POS solution with sales, payments, products management, stores, stock control, users, profiles management, customers plans and much more"
-										featuredImage={almodeFeaturedImage}
-										onImageClick={setSelectedImage}
-										images={almodeImages}
-										links={[{
-											url: 'https://www.almode.com',
-											description: 'Website',
-										}]}
-									/>
-								</Grid>
-								<Grid item style={{ ...snapProperties }}>
-									<ProjectCard
-										title="Self Menu"
-										description="Solo project to call waiter with the user's mobile device after scanning a QR Code"
-										onImageClick={setSelectedImage}
-										images={selfMenuImages}
-										links={[
-											{
-												url: 'https://self-menu.web.app/60e3d8327ec3830a4c088911',
-												description: 'Menu Sample',
-											},
-											{
-												url: 'https://self-menu.web.app/',
-												description: 'Website',
-											},
-										]}
-										mobile
-									/>
-								</Grid>
+								{projects.map(project => (
+									<Grid item style={{ ...snapProperties }}>
+										<ProjectCard
+											{...project}
+											onImageClick={setSelectedImage}
+										/>
+									</Grid>	
+								))}
 							</Grid>
 						</Box>
 						<Box
@@ -282,24 +231,67 @@ const App: React.FC = (props) => {
 								spacing={2}
 								minHeight="calc(100vh - 64px)"
 							>
+								<Grid item xs={12}>
+									<Typography
+										variant="h2"
+										align="center"
+										color="white"
+									>
+										Story Line
+									</Typography>
+								</Grid>
 								<Grid container item xs={12} spacing={theme.spacing(2)} style={{ ...snapProperties }}>
-									<Grid item xs>
-										
-									</Grid>
 									<Grid
 										item
 										xs={12}
-										md={6}
 										paddingRight={theme.spacing(2)}
 									>
 										<MyStoryLine/>
 									</Grid>
 								</Grid>
-								{/* <Grid item xs={12} style={{ ...snapProperties }}>
-									<Card>
-
-									</Card>
-								</Grid> */}
+							</Grid>
+						</Box>
+						<Box
+							style={{ backgroundColor: 'lightcyan' }}
+							paddingRight={theme.spacing(2)}
+							paddingBottom={theme.spacing(2)}
+							minHeight='calc(100vh - 64px)'
+							display='flex'
+						>
+							<Grid
+								container
+								maxWidth="md"
+								margin="auto"
+								spacing={2}
+								minHeight="calc(100vh - 64px)"
+								style={{ ...snapProperties }}
+								ref={aboutMeSection}
+							>
+								<Grid item xs={12}>
+									<Typography
+										variant="h2"
+										align="center"
+									>
+										Get In Touch
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+										<Card style={{ maxWidth: '420px', margin: 'auto' }}>
+											<CardContent style={{ textAlign: 'center' }}>
+												<Typography gutterBottom>
+													I'm looking for new oportunities, so is a good posibility to you say hi
+												</Typography>
+												<Button
+													target='_blank'
+													rel='noopener noreferrer'
+													href='mailto:germanogascho@gmail.com'
+													variant='outlined'
+												>
+													Say Hi
+												</Button>
+											</CardContent>
+										</Card>
+								</Grid>
 							</Grid>
 						</Box>
 					</Box>

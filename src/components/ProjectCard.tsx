@@ -1,7 +1,5 @@
-import { Button, Card, CardActions, CardContent, Collapse, Grid, ListItem, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
-import { ChevronDown, ClockOutline, OpenInNew } from 'mdi-material-ui'
-import React, { useState } from 'react'
-import ExpandMore from './ExpandMore'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Card, CardContent, Grid, IconButton, Typography } from '@mui/material'
+import { ChevronDown, OpenInNew } from 'mdi-material-ui'
 import SelectableImage, { ImageDisplay } from './SelectableImage'
 
 interface ExternalLink {
@@ -10,109 +8,141 @@ interface ExternalLink {
 }
 
 interface Props {
-    title?: string
-    description?: string
+    title: string
+    description: string
+    role: string
+    technologies: string[]
+    achievements?: string[]
     featuredImage?: ImageDisplay
     onImageClick?: (image: ImageDisplay) => void
     images?: ImageDisplay[]
-    timeExperience?: string
+    duration: string
     links?: ExternalLink[]
-    mobile?: boolean
+    displayAsMobile?: boolean
 }
 
 const ProjectCard = ({
     title,
     description,
+    role,
+    achievements,
     featuredImage,
     onImageClick,
     images,
-    timeExperience,
+    duration,
     links,
-    mobile = false,
+    displayAsMobile = false,
+    technologies,
 }: Props) => {
-    const theme = useTheme()
-    const [expanded, setExpanded] = useState(false)
     return (
         <Card>
             <CardContent>
-                {title &&<Typography variant="h3" gutterBottom>
-                    {title}
-                </Typography>}
-                {description && <Typography variant="h6" color="text.secondary" gutterBottom>
-                    {description}
-                </Typography>}
-                <Grid
-                    container
-                    spacing={2}
-                    style={{ paddingTop: theme.spacing(2) }}
-                >
-                    {!mobile
-                        ? (<>
-                            {featuredImage && <Grid item xs={9}>
-                                <SelectableImage
-                                    image={featuredImage}
-                                    onClick={onImageClick}
-                                />
-                            </Grid>}
-                            {images && <Grid item xs={3}>
-                                <Grid container spacing={2}>
-                                    {images.map((image, index) =>
-                                        <Grid item xs={12} key={index}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={8}>
+                        <Box
+                            display='flex'
+                            flexDirection='column'
+                            justifyContent='space-between'
+                            flex={1}
+                        >
+                            <Box flex={1}>
+                                <Box
+                                    display='flex'
+                                    justifyContent='space-between'
+                                    alignItems='flex-start'
+                                >
+                                    <Typography variant="h3" gutterBottom>
+                                        {title}
+                                    </Typography>
+                                    {links && <IconButton
+                                        href={links[0].url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <OpenInNew color='primary' />
+                                    </IconButton>}
+                                </Box>
+                                <Typography variant="h6" color="text.secondary" gutterBottom>
+                                    {description}
+                                </Typography>
+                            </Box>
+                            <Box>
+                                <Typography variant="h6" color="text.secondary">
+                                    <span style={{ fontWeight: 'bold' }}> Role: </span> {role}
+                                </Typography>
+                                <Typography variant="h6" color="text.secondary">
+                                    <span style={{ fontWeight: 'bold' }}> Technologies: </span> {technologies.join(', ')}
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={4} alignSelf='center'>
+                        <Grid container spacing={2}>
+                            {!displayAsMobile
+                                ? (<>
+                                    {featuredImage && <Grid item xs={9}>
+                                        <SelectableImage
+                                            image={featuredImage}
+                                            onClick={onImageClick}
+                                        />
+                                    </Grid>}
+                                    {images && <Grid item xs={3}>
+                                        <Grid container spacing={2}>
+                                            {images.map((image, index) =>
+                                                <Grid item xs={12} key={index}>
+                                                    <SelectableImage
+                                                        image={image}
+                                                        onClick={onImageClick}
+                                                    />
+                                                </Grid>
+                                            )}
+                                        </Grid>
+                                    </Grid>}
+                                </>)
+                                : (<>
+                                    {images?.map((image, index) =>
+                                        <Grid item xs={4} key={index}>
                                             <SelectableImage
                                                 image={image}
                                                 onClick={onImageClick}
                                             />
                                         </Grid>
                                     )}
-                                </Grid>
-                            </Grid>}
-                        </>)
-                        : (<>
-                            {images?.map((image, index) =>
-                                <Grid item xs={4} key={index}>
-                                    <SelectableImage
-                                        image={image}
-                                        onClick={onImageClick}
-                                    />
-                                </Grid>
-                            )}
-                        </>)
-                    }
+                                </>)
+                            }
+                        </Grid>
+                        <Typography
+                            textAlign='center'
+                            fontStyle='italic'
+                            color='text.secondary' pt={2}
+                        >
+                            Click on the image to expand
+                        </Typography>
+                    </Grid>
                 </Grid>
             </CardContent>
-            <CardActions disableSpacing>
-                {links?.map((link, index) => (
-                    <Button
-                        key={index}
-                        endIcon={<OpenInNew />}
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        {link.description}
-                    </Button>
-                ))}
-                <ExpandMore
-                    expand={expanded}
-                    onClick={() => setExpanded(!expanded)}
-                    aria-expanded={expanded}
-                    aria-label="show more"
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ChevronDown />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
                 >
-                    <ChevronDown />
-                </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                {timeExperience && <ListItem>
-                    <ListItemIcon>
-                        <ClockOutline />
-                    </ListItemIcon>
-                    <ListItemText
-                        secondary={timeExperience}
-                    />
-                </ListItem>}
-                <CardContent>
-                </CardContent>
-            </Collapse>
+                    <Typography color="primary">Show more</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography variant="h6" color="text.secondary" gutterBottom>
+                        <span style={{ fontWeight: 'bold' }}> Duration: </span> {duration}
+                    </Typography>
+                    {achievements && (<Typography variant="h6" color="text.secondary">
+                        <div style={{ fontWeight: 'bold' }}> Achievements: </div>
+                        <ul>
+                            {achievements.map(achievement => (
+                                <li>{achievement}</li>
+                            ))}
+                        </ul>
+                    </Typography>)}
+                </AccordionDetails>
+            </Accordion>
         </Card>
     )
 }

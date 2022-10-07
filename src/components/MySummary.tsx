@@ -26,8 +26,8 @@ const MySummary = () => {
             </ListItem>
             <ListItem>
                 <ListItemText
-                    primary="Main languages"
-                    secondary="JavaScript, TypeScript and Java"
+                    primary="Main technologies"
+                    secondary="Reactjs, JavaScript, TypeScript and NodeJS"
                 />
             </ListItem>
             <ListItem>

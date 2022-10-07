@@ -4,13 +4,13 @@ import { Card } from '@mui/material'
 const MyStoryLine = () => {
     return (
         <Card>
-            <Timeline position="right">
+            <Timeline position="alternate">
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2012
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
@@ -18,21 +18,21 @@ const MyStoryLine = () => {
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2016
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent>Finished college 🎓  </TimelineContent>
+                    <TimelineContent>Finished college 🎓</TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2017
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
@@ -40,11 +40,11 @@ const MyStoryLine = () => {
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2019
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
@@ -52,44 +52,48 @@ const MyStoryLine = () => {
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2020
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                        <p>Fired at Adapcon 🔥</p>
-                        <p>Hired at <a href="https://www.almode.com/" target="_blank" rel="noreferrer">Almode</a></p>
+                        Hired at <a href="https://www.almode.com/" target="_blank" rel="noreferrer">Almode</a>
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
                         2021
                     </TimelineOppositeContent>
                     <TimelineSeparator>
-                        <TimelineDot color="primary" />
+                        <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent>
-                        <p>Resigned at Almode</p>
-                        <p>Own projects</p>
-                    </TimelineContent>
+                    <TimelineContent> Own projects </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelineOppositeContent color="text.secondary" sx={{ maxWidth: '80px' }} >
+                    <TimelineOppositeContent color="text.secondary">
+                        2022
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineDot />
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent> Hired at <a href="https://www.groundbreaker.co/" target="_blank" rel="noreferrer">Groundbreaker</a> </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                    <TimelineOppositeContent color="text.secondary">
                         Now
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot color="primary" />
                     </TimelineSeparator>
-                    <TimelineContent>
-                        <p> Looking for a remote job </p>
-                    </TimelineContent>
+                    <TimelineContent>Looking for new oportunities</TimelineContent>
                 </TimelineItem>
             </Timeline>
-        </Card>
+        </Card >
     )
 }
 
