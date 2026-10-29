@@ -446,6 +446,11 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+keyrune@^3.19.0:
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/keyrune/-/keyrune-3.19.0.tgz#ea558a65ce589aca6c46ad013f27315052db2724"
+  integrity sha512-nSsryO4JefvBx1+v6wQvaEnz5DI4lo1V1hkkGbS8BubC6OCpCweJtZdI2HsoR7Pr5yfVpqsjDBS051o8AHhJsw==
+
 lightningcss-android-arm64@1.33.0:
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/lightningcss-android-arm64/-/lightningcss-android-arm64-1.33.0.tgz#9a6841f88ae50fc83502903892b41af41bc2b907"
@@ -533,6 +538,11 @@ make-dir@^3.0.2:
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   dependencies:
     semver "^6.0.0"
+
+mana-font@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/mana-font/-/mana-font-1.18.0.tgz#d69f8264e1f04a6be3a78c0650a6dbebe2546511"
+  integrity sha512-PKCR5z/eeOBbox0Lu5b6A0QUWVUUa3A3LWXb9sw4N5ThIWXxRbCagXPSL4k6Cnh2Fre6Y4+2Xl819OrY7m1cUA==
 
 merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"

@@ -21,7 +21,7 @@ Single-page personal portfolio, no router and no backend. `src/App.tsx` declares
 - **Content as data**: `src/data/*.ts` hold only language-neutral data (ids, company names, dates, stacks, image URLs, links) and an `id` that keys into the locale files: `profile.ts` (links, `careerStart` used for "years of XP"), `experience.ts` → `career.jobs.<id>`, `projects.ts` → `projects.items.<id>` (captions match `images` order), `skills.ts` (tech names stay literal; `nameKey`/`noteKey` → `skills.names`/`skills.notes`). Content comes from the CV (`Germano Gascho - Currículo v4.pdf`, Portuguese).
 - **Game theming** — each section borrows from a game:
   - Hero / Projects: Mega Man X ("Press start", stage select cards, `EnergyBar` life bar that fills with scroll progress, `Press Start 2P` pixel font via `.pixel`).
-  - About: `MtgCard`, a hand-built CSS Magic: The Gathering card (power/toughness = years of XP).
+  - About: `MtgCard`, a CSS recreation of the modern (M15) Magic card frame, sized in `cqw` container units so it scales with its width. Mana/set symbols and the MPlantin rules font come from `mana-font` and `keyrune`; the name/type font is Spectral (Beleren isn't openly licensed). Power/toughness = years of XP.
   - Career: `SpireMap`, a Slay the Spire–style map; node icons come from `react-icons/gi` keyed by `NodeKind`.
   - Skills: `CommandCard`, a Warcraft III command card with a tooltip panel.
   - Shared look: `.panel` (stone + gold trim), `.tags`, colors/fonts as CSS variables in `src/index.css` (all styles live there). Fonts load from Google Fonts in `index.html`.
