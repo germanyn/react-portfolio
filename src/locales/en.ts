@@ -13,7 +13,7 @@ const en = {
   sections: {
     projects: { kicker: 'Stage select', title: 'Projects' },
     about: { kicker: 'Character sheet', title: 'About me' },
-    career: { kicker: 'Act I — The climb', title: 'Career map' },
+    career: { kicker: 'The climb', title: 'Career map' },
     skills: { kicker: 'Command card', title: 'Skills' },
     contact: { kicker: 'Game over?', title: 'Get in touch' },
   },
@@ -99,14 +99,19 @@ const en = {
   career: {
     legend: 'Legend',
     present: 'present',
-    startingRelic: 'Starting relic',
+    actsLabel: 'Acts',
+    acts: {
+      start: { number: 'Act I', name: 'The Start' },
+      senior: { number: 'Act II', name: 'Senior Ascension' },
+      architect: { number: 'Act III', name: 'Architect' },
+    },
+    // Each node kind follows a rule, shown in the legend.
     kinds: {
-      boss: 'Boss',
-      elite: 'Elite',
-      event: 'Event',
-      rest: 'Rest site',
-      treasure: 'Treasure',
-      start: 'Neow',
+      enemy: { name: 'Enemy', meaning: 'role' },
+      elite: { name: 'Elite', meaning: 'senior role' },
+      boss: { name: 'Boss', meaning: 'leading a team' },
+      treasure: { name: 'Treasure', meaning: 'freelance' },
+      rest: { name: 'Rest site', meaning: 'studies' },
     },
     jobs: {
       clinicorp: {
@@ -147,7 +152,7 @@ const en = {
         highlights: [
           'CRM built with Vue and micro frontends.',
           'Introduced Storybook, E2E and unit testing to the workflow.',
-          'Scrum master for a team of up to 4 developers.',
+          'Led the team as scrum master for 3 developers.',
         ],
       },
       groundbreaker: {
@@ -156,6 +161,7 @@ const en = {
         highlights: [
           'Proptech platform with React, Node.js, Terraform and AWS microservices.',
           'Cut each microservice bundle from 24 MB down to 2 MB.',
+          'Technical reference for TypeScript usage on the team.',
         ],
       },
       almode: {

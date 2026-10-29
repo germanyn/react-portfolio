@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import About from './components/About'
 import CommandCard from './components/CommandCard'
 import Contact from './components/Contact'
-import EnergyBar from './components/EnergyBar'
 import Hero from './components/Hero'
 import NavBar from './components/NavBar'
 import SpireMap from './components/SpireMap'
@@ -49,7 +48,6 @@ export default function App() {
   return (
     <>
       <NavBar sections={sections.map(({ id }) => ({ id, label: t(`nav.${id}`) }))} active={active} />
-      <EnergyBar />
       <main>
         <Hero />
         {sections.map(({ id, content }) => (

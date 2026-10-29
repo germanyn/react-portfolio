@@ -15,7 +15,7 @@ const pt: Translation = {
   sections: {
     projects: { kicker: 'Seleção de fase', title: 'Projetos' },
     about: { kicker: 'Ficha do personagem', title: 'Sobre mim' },
-    career: { kicker: 'Ato I — A escalada', title: 'Mapa da carreira' },
+    career: { kicker: 'A escalada', title: 'Mapa da carreira' },
     skills: { kicker: 'Painel de comandos', title: 'Habilidades' },
     contact: { kicker: 'Fim de jogo?', title: 'Fale comigo' },
   },
@@ -101,14 +101,18 @@ const pt: Translation = {
   career: {
     legend: 'Legenda',
     present: 'atual',
-    startingRelic: 'Relíquia inicial',
+    actsLabel: 'Atos',
+    acts: {
+      start: { number: 'Ato I', name: 'O Começo' },
+      senior: { number: 'Ato II', name: 'Ascensão Sênior' },
+      architect: { number: 'Ato III', name: 'Arquiteto' },
+    },
     kinds: {
-      boss: 'Chefe',
-      elite: 'Elite',
-      event: 'Evento',
-      rest: 'Descanso',
-      treasure: 'Tesouro',
-      start: 'Neow',
+      enemy: { name: 'Inimigo', meaning: 'cargo' },
+      elite: { name: 'Elite', meaning: 'cargo sênior' },
+      boss: { name: 'Chefe', meaning: 'liderando um time' },
+      treasure: { name: 'Tesouro', meaning: 'freelance' },
+      rest: { name: 'Descanso', meaning: 'estudos' },
     },
     jobs: {
       clinicorp: {
@@ -149,7 +153,7 @@ const pt: Translation = {
         highlights: [
           'CRM desenvolvido com Vue e micro frontends.',
           'Implantação de Storybook, testes E2E e testes unitários no fluxo de trabalho.',
-          'Scrum master de um time de até 4 desenvolvedores.',
+          'Liderança do time como scrum master de 3 desenvolvedores.',
         ],
       },
       groundbreaker: {
@@ -158,6 +162,7 @@ const pt: Translation = {
         highlights: [
           'Plataforma proptech com React, Node.js, Terraform e microsserviços na AWS.',
           'Redução do bundle de cada microsserviço de 24 MB para 2 MB.',
+          'Referência técnica em uso de TypeScript.',
         ],
       },
       almode: {
