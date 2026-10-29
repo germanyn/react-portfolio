@@ -8,6 +8,7 @@ const en = {
     contact: 'Say hi',
     backToTop: 'Back to top',
     sections: 'Sections',
+    menu: 'Menu',
     language: 'Language',
   },
   sections: {
@@ -194,12 +195,15 @@ const en = {
   },
   skills: {
     level: 'Level {{level}} — {{name}}',
+    usedAt: 'Used at',
+    noJobs: 'Side projects and studies',
+    hint: 'Click a skill to pin it here.',
     levels: ['Apprentice', 'Adept', 'Master'],
     groups: {
       frontend: 'Front-end',
       backend: 'Back-end',
       data: 'Data & Cloud',
-      leadership: 'Leadership',
+      soft: 'Soft skills',
     },
     notes: {
       react: 'SPAs, React Native, design systems',
@@ -212,6 +216,7 @@ const en = {
     },
     names: {
       testing: 'Testing',
+      microservices: 'Microservices',
       leadership: 'Team Leadership',
       agile: 'Scrum & Kanban',
       projectManagement: 'Project Management',

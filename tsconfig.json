@@ -15,23 +15,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": [
-    "src/App.css",
-    "src/logo.svg",
-    "src/react-app-env.d.ts",
-    "src/reportWebVitals.ts",
-    "src/setupTests.ts",
-    "src/utils.ts",
-    "src/index.tsx",
-    "src/hooks",
-    "src/components/AppLayout.tsx",
-    "src/components/ExpandMore.tsx",
-    "src/components/MyArchievments.tsx",
-    "src/components/MyStoryLine.tsx",
-    "src/components/MySummary.tsx",
-    "src/components/GermanoCard.tsx",
-    "src/components/ProjectCard.tsx",
-    "src/components/SelectableImage.tsx"
-  ]
+  "include": ["src", "vite.config.ts"]
 }

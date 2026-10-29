@@ -15,7 +15,9 @@ export const profile = {
 }
 
 export function yearsSince(isoDate: string) {
-  const start = new Date(isoDate)
+  // Build a local date: `new Date('YYYY-MM-DD')` is UTC midnight, i.e. the previous day west of UTC.
+  const [year, month, day] = isoDate.split('-').map(Number)
+  const start = new Date(year, month - 1, day)
   const now = new Date()
   let years = now.getFullYear() - start.getFullYear()
   if (now < new Date(now.getFullYear(), start.getMonth(), start.getDate())) years--

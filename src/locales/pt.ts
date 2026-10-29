@@ -10,6 +10,7 @@ const pt: Translation = {
     contact: 'Contato',
     backToTop: 'Voltar ao topo',
     sections: 'Seções',
+    menu: 'Menu',
     language: 'Idioma',
   },
   sections: {
@@ -195,12 +196,15 @@ const pt: Translation = {
   },
   skills: {
     level: 'Nível {{level}} — {{name}}',
+    usedAt: 'Usado em',
+    noJobs: 'Projetos pessoais e estudos',
+    hint: 'Clique em uma habilidade para fixá-la aqui.',
     levels: ['Aprendiz', 'Adepto', 'Mestre'],
     groups: {
       frontend: 'Front-end',
       backend: 'Back-end',
       data: 'Dados & Nuvem',
-      leadership: 'Liderança',
+      soft: 'Soft skills',
     },
     notes: {
       react: 'SPAs, React Native, design systems',
@@ -213,6 +217,7 @@ const pt: Translation = {
     },
     names: {
       testing: 'Testes',
+      microservices: 'Microsserviços',
       leadership: 'Liderança de Times',
       agile: 'Scrum & Kanban',
       projectManagement: 'Gestão de Projetos',

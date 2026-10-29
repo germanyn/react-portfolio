@@ -131,8 +131,27 @@ h4 {
   text-shadow: 2px 2px 0 #000;
 }
 
-.nav nav {
+.nav__menu {
   flex: 1;
+}
+
+/* Only shown inside the mobile dropdown */
+.nav__menu-social,
+.nav__toggle {
+  display: none;
+}
+
+.nav__toggle {
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid var(--gold-dim);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--gold);
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 
 .nav__links {
@@ -768,8 +787,8 @@ h4 {
 
 .spire {
   position: relative;
-  overflow: hidden;
-  padding: 0 0 1.5rem;
+  /* clip (not hidden) keeps rounded corners without breaking the sticky legend */
+  overflow: clip;
   border-radius: var(--radius);
   background:
     radial-gradient(circle at 50% 0%, #e9dcc0 0%, transparent 70%),
@@ -779,14 +798,20 @@ h4 {
 }
 
 .spire__legend {
+  /* Stays at the bottom of the viewport while the map scrolls */
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem 1.25rem;
   list-style: none;
-  margin: 1rem 1rem 0;
-  padding: 1rem 0 0;
-  border-top: 1px solid #5c463040;
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-top: 2px solid #8a6d2c;
+  background: #cdb88f;
+  box-shadow: 0 -6px 14px #6b4e2a55;
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 0.85rem;
@@ -807,10 +832,15 @@ h4 {
 
 /* Act tabs, styled like the act title banner */
 .spire__tabs {
+  /* Stays under the nav bar while the map scrolls */
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 2rem;
   border-bottom: 2px solid #8a6d2c;
+  box-shadow: 0 6px 14px #6b4e2a55;
 }
 
 .spire__tab {
@@ -925,6 +955,29 @@ h4 {
   grid-column: 3;
 }
 
+/* Flash when reached from a skill link */
+.spire__floor.is-highlighted .spire__card {
+  animation: spire-highlight 2.4s ease-out;
+}
+
+.spire__floor.is-highlighted .spire__node {
+  animation: spire-node 0.6s ease-in-out 3;
+}
+
+@keyframes spire-highlight {
+  0%,
+  60% {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold), 0 0 30px #d9b45acc;
+  }
+}
+
+@keyframes spire-node {
+  50% {
+    transform: scale(1.2);
+  }
+}
+
 .spire__card h4 {
   font-size: 1.1rem;
 }
@@ -963,7 +1016,7 @@ h4 {
 
 .wc3__groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.25rem;
 }
 
@@ -986,43 +1039,67 @@ h4 {
 .wc3__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 0.75rem 6px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Button = square icon slot + name underneath */
 .wc3__btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #d8d8d8;
+  cursor: pointer;
+}
+
+.wc3__icon {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  padding: 0;
-  cursor: pointer;
   border: 2px solid #000;
   border-radius: 3px;
-  background:
-    radial-gradient(circle at 35% 30%, #4d5f86, #1d2740 75%);
+  background: radial-gradient(circle at 35% 30%, #3b4664, #161c2c 75%);
   box-shadow: inset 0 0 0 1px #8a8a8a66, inset 0 -6px 10px #0008;
-  color: #f1f1f1;
+  font-size: 2.1rem;
   transition: box-shadow 0.15s, transform 0.1s;
 }
 
-.wc3__btn:hover,
-.wc3__btn.is-active {
+.wc3__icon svg {
+  filter: drop-shadow(1px 1px 0 #000);
+}
+
+.wc3__btn:hover .wc3__icon,
+.wc3__btn:focus-visible .wc3__icon,
+.wc3__btn.is-active .wc3__icon {
   box-shadow: inset 0 0 0 2px var(--gold), 0 0 10px #d9b45a66;
 }
 
-.wc3__btn:active {
+.wc3__btn:focus-visible {
+  outline: none;
+}
+
+.wc3__btn:active .wc3__icon {
   transform: scale(0.95);
 }
 
-.wc3__glyph {
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: 0.95rem;
-  text-shadow: 1px 1px 0 #000;
+.wc3__name {
+  font-size: 0.68rem;
+  line-height: 1.2;
+  text-align: center;
+  hyphens: auto;
+}
+
+.wc3__btn.is-active .wc3__name {
+  color: var(--gold);
 }
 
 .wc3__pips {
@@ -1065,6 +1142,49 @@ h4 {
   color: #7fd36a;
 }
 
+.wc3__tooltip .wc3__used {
+  margin-top: 0.9rem;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  color: var(--x-cyan);
+}
+
+.wc3__jobs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.wc3__jobs a {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--gold-dim);
+  border-radius: 3px;
+  color: var(--gold);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.wc3__jobs a:hover {
+  background: #d9b45a22;
+  border-color: var(--gold);
+}
+
+.wc3__none,
+.wc3__hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.wc3__tooltip .wc3__hint {
+  margin-top: 0.9rem;
+  font-style: italic;
+}
+
 /* ---------- Contact ---------- */
 
 .contact {
@@ -1101,26 +1221,52 @@ h4 {
     padding: 0 1rem;
   }
 
-  .nav nav {
-    overflow-x: auto;
-    scrollbar-width: none;
+  /* Links move into a dropdown under the bar */
+  .nav__menu {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    padding: 0.5rem 1rem 1.25rem;
+    background: var(--bg);
+    border-bottom: 2px solid var(--gold-dim);
+    box-shadow: 0 12px 24px #000a;
+  }
+
+  .nav.is-open .nav__menu {
+    display: block;
+  }
+
+  .nav__logo {
+    margin-right: auto;
   }
 
   .nav__links {
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0;
   }
 
   .nav__links a {
-    padding: 0.4rem 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.85rem 0.5rem;
+    font-size: 1.05rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--panel-edge);
   }
 
-  .nav__links a.is-active::before {
-    content: none;
+  .nav__menu-social {
+    display: block;
+    margin-top: 1rem;
   }
 
-  .nav > .social {
+  .nav__social {
     display: none;
+  }
+
+  .nav__toggle {
+    display: grid;
   }
 
   .section {
