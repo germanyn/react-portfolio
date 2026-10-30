@@ -63,6 +63,6 @@ describe('CommandCard', () => {
     await userEvent.click(panel().getByRole('link', { name: 'Umbrage' }))
 
     expect(screen.getByRole('tab', { selected: true })).toHaveTextContent('Architect')
-    expect(document.getElementById('job-umbrage')).toHaveClass('is-highlighted')
+    expect(document.getElementById('job-umbrage')).toHaveAttribute('data-highlighted')
   })
 })

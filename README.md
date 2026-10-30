@@ -39,7 +39,7 @@ Language is picked from `?lang=en` / `?lang=pt`, then the visitor's last choice,
 
 ## Stack
 
-React 19, TypeScript, Vite, i18next, plain CSS (`src/index.css`), Vitest + Testing Library. Hosted on GitHub Pages; `public/404.html` and the script in `index.html` handle the [single-page-app redirect](https://github.com/rafgraph/spa-github-pages).
+React 19, TypeScript, Vite, i18next, Tailwind CSS v4 (theme tokens in `src/index.css`), Vitest + Testing Library. Hosted on GitHub Pages; `public/404.html` and the script in `index.html` handle the [single-page-app redirect](https://github.com/rafgraph/spa-github-pages).
 
 ## Credits
 

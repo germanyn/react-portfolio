@@ -43,11 +43,11 @@ describe('App', () => {
 
   it('highlights the section currently on screen', () => {
     render(<App />)
-    expect(sectionsNav().getByRole('link', { name: 'Career' })).not.toHaveClass('is-active')
+    expect(sectionsNav().getByRole('link', { name: 'Career' })).not.toHaveAttribute('aria-current')
 
     act(() => reportVisible('career'))
 
-    expect(sectionsNav().getByRole('link', { name: 'Career' })).toHaveClass('is-active')
-    expect(sectionsNav().getByRole('link', { name: 'Projects' })).not.toHaveClass('is-active')
+    expect(sectionsNav().getByRole('link', { name: 'Career' })).toHaveAttribute('aria-current', 'location')
+    expect(sectionsNav().getByRole('link', { name: 'Projects' })).not.toHaveAttribute('aria-current')
   })
 })

@@ -6,14 +6,15 @@ import SpireMap from './SpireMap'
 
 const selectedTab = () => screen.getByRole('tab', { selected: true })
 const panel = () => screen.getByRole('tabpanel')
-const jobOrder = () => [...panel().querySelectorAll('h4')].map(heading => heading.querySelector('.spire__at')?.textContent)
+/** Company (or school) of each card, top to bottom: the part of the heading after "@". */
+const jobOrder = () => [...panel().querySelectorAll('h4')].map(heading => heading.textContent!.split('@ ')[1])
 
 describe('SpireMap', () => {
   it('opens on Act I, from studies to Almode', () => {
     render(<SpireMap />)
 
     expect(selectedTab()).toHaveTextContent('The Start')
-    expect(jobOrder()).toEqual(['@ Univali', '@ Adapcon Sistemas', '@ Almode'])
+    expect(jobOrder()).toEqual(['Univali', 'Adapcon Sistemas', 'Almode'])
   })
 
   it('switches acts by clicking a tab, listing jobs oldest first with Somar last', async () => {
@@ -22,7 +23,7 @@ describe('SpireMap', () => {
     await userEvent.click(screen.getByRole('tab', { name: /Architect/ }))
 
     expect(selectedTab()).toHaveTextContent('Architect')
-    expect(jobOrder()).toEqual(['@ Bytecom Sistemas', '@ Umbrage', '@ Clinicorp', '@ Somar Vale do Itapocu'])
+    expect(jobOrder()).toEqual(['Bytecom Sistemas', 'Umbrage', 'Clinicorp', 'Somar Vale do Itapocu'])
   })
 
   it('moves between tabs with the arrow, Home and End keys', async () => {
@@ -46,7 +47,7 @@ describe('SpireMap', () => {
   it('scrolls back to the top of the map when switching acts while scrolled past it', async () => {
     document.documentElement.style.setProperty('--nav-h', '64px')
     render(<SpireMap />)
-    const map = document.querySelector<HTMLElement>('.spire')!
+    const map = screen.getByRole('tablist').parentElement!
 
     // Map top still on screen: switching acts doesn't scroll.
     map.getBoundingClientRect = () => ({ top: 200 }) as DOMRect
@@ -62,8 +63,8 @@ describe('SpireMap', () => {
   it('derives node types from the job level', () => {
     render(<SpireMap />)
 
-    expect(document.getElementById('job-adapcon')).toHaveClass('node--enemy')
-    expect(document.getElementById('job-almode')).toHaveClass('node--boss')
+    expect(document.getElementById('job-adapcon')).toHaveAttribute('data-kind', 'enemy')
+    expect(document.getElementById('job-almode')).toHaveAttribute('data-kind', 'boss')
   })
 
   it('opens the right act, scrolls to and highlights a job requested with showJob', () => {
@@ -73,7 +74,7 @@ describe('SpireMap', () => {
 
     expect(selectedTab()).toHaveTextContent('Senior Ascension')
     const job = document.getElementById('job-groundbreaker')!
-    expect(job).toHaveClass('is-highlighted')
+    expect(job).toHaveAttribute('data-highlighted')
     expect(job.scrollIntoView).toHaveBeenCalled()
     expect(window.location.hash).toBe('#job-groundbreaker')
   })
@@ -83,7 +84,7 @@ describe('SpireMap', () => {
     render(<SpireMap />)
 
     expect(selectedTab()).toHaveTextContent('Architect')
-    expect(document.getElementById('job-somar')).toHaveClass('is-highlighted')
+    expect(document.getElementById('job-somar')).toHaveAttribute('data-highlighted')
   })
 
   it('ignores an unknown #job-… URL', () => {

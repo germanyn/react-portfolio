@@ -14,8 +14,8 @@ describe('NavBar', () => {
   it('marks the active section', () => {
     render(<NavBar sections={sections} active="career" />)
 
-    expect(screen.getByRole('link', { name: 'Career' })).toHaveClass('is-active')
-    expect(screen.getByRole('link', { name: 'Projects' })).not.toHaveClass('is-active')
+    expect(screen.getByRole('link', { name: 'Career' })).toHaveAttribute('aria-current', 'location')
+    expect(screen.getByRole('link', { name: 'Projects' })).not.toHaveAttribute('aria-current')
   })
 
   it('toggles the mobile menu', async () => {
@@ -24,7 +24,7 @@ describe('NavBar', () => {
 
     await userEvent.click(menuButton())
     expect(menuButton()).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByRole('banner')).toHaveClass('is-open')
+    expect(screen.getByRole('banner')).toHaveAttribute('data-open')
 
     await userEvent.click(menuButton())
     expect(menuButton()).toHaveAttribute('aria-expanded', 'false')
