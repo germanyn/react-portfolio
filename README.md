@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Germano Gascho — portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My personal site: **https://germanyn.github.io/react-portfolio/**
 
-## Available Scripts
+A single-page portfolio in English and Portuguese, built with React and Vite: projects, about me, a career map and skills, where each skill links to the jobs I used it in.
 
-In the project directory, you can run:
+## Running it
 
-### `yarn start`
+Requires Node 22.12+ and Yarn 1.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+yarn          # install
+yarn dev      # http://localhost:5173/react-portfolio/
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`yarn dev --host` also serves it on your local network, which is handy for checking on a phone.
 
-### `yarn test`
+| Command | |
+| --- | --- |
+| `yarn build` | Typecheck and build to `dist/` |
+| `yarn preview` | Serve the built `dist/` |
+| `yarn test` | Vitest in watch mode (`yarn test --run` for a single run) |
+| `yarn coverage` | Tests with coverage; fails below the thresholds in `vite.config.ts` |
+| `yarn deploy` | Build and publish `dist/` to the `gh-pages` branch |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Editing content
 
-### `yarn build`
+Text and data are kept apart, so most changes don't touch components:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Copy, in both languages:** `src/locales/en.ts` and `src/locales/pt.ts`. The Portuguese file is typed against the English one, so a missing key fails the build.
+- **Jobs:** `src/data/experience.ts`. Dates, stack, act, and a `level` that decides the map node.
+- **Skills:** `src/data/skills.ts`. Icon, level and the jobs each skill links to.
+- **Projects:** `src/data/projects.ts`, with screenshots in `public/img/<project>/`.
+- **Links and career start date:** `src/data/profile.ts`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After editing data or translations, run `yarn test --run src/data`. It checks things TypeScript can't, like a project image without a caption or a Portuguese list shorter than the English one.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Language is picked from `?lang=en` / `?lang=pt`, then the visitor's last choice, then the browser.
 
-### `yarn eject`
+## Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+React 19, TypeScript, Vite, i18next, plain CSS (`src/index.css`), Vitest + Testing Library. Hosted on GitHub Pages; `public/404.html` and the script in `index.html` handle the [single-page-app redirect](https://github.com/rafgraph/spa-github-pages).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Credits
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Mana and set symbols, plus the MPlantin rules font, from [Mana](https://github.com/andrewgioia/mana) and [Keyrune](https://github.com/andrewgioia/keyrune) by Andrew Gioia
+- Icons from [react-icons](https://react-icons.github.io/react-icons/) (Simple Icons, Game Icons, Font Awesome, Tabler)
+- Fonts from Google Fonts: Cinzel, Spectral, Inter and Press Start 2P
