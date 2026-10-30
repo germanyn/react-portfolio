@@ -24,7 +24,9 @@
           var decoded = l.search.slice(1).split('&').map(function (s) {
             return s.replace(/~and~/g, '&')
           }).join('?');
-          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+          // No router: drop the unknown path, keep the query (?lang=) and hash.
+          var query = decoded.indexOf('?');
+          window.history.replaceState(null, null, l.pathname + (query < 0 ? '' : decoded.slice(query)) + l.hash);
         }
       }(window.location))
     </script>

@@ -34,5 +34,5 @@ Single-page personal portfolio, no router and no backend. `src/App.tsx` declares
   - `mana-font`/`keyrune` CSS is unlayered and beats Tailwind's layered utilities on the same property, so the few overrides in `MtgCard` use the `!` modifier.
   - Tech pills are the shared `Tags` component; career rows are `Floor` inside `SpireMap`. Fonts load from Google Fonts in `index.html`.
 - **Static assets**: images are in `public/img/<project>/`; in TS reference them with `import.meta.env.BASE_URL` (see `img()` in `projects.ts`); in CSS use `/img/...` (Vite prefixes `base`).
-- **GitHub Pages SPA**: `public/404.html` + the redirect script in `index.html` implement the spa-github-pages trick; keep them in sync (404.html must stay ≥512 bytes).
+- **GitHub Pages SPA**: `public/404.html` + the redirect script in `index.html` implement the spa-github-pages trick; keep them in sync (404.html must stay ≥512 bytes, `pathSegmentsToKeep = 1` for the repo subpath). With no router, the restore script drops unknown paths back to the base and keeps only query + hash. In dev/preview, the `baseRedirect` plugin in `vite.config.ts` 301s `/react-portfolio` to `/react-portfolio/`.
 - **Nav**: below 860px the section links and social buttons move into a dropdown toggled by a menu button (`NavBar`, closes on link click or Escape).
