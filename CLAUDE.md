@@ -9,7 +9,7 @@ Package manager is Yarn 1 (`yarn.lock`). Vite 8 + React 19 + TypeScript 7, no UI
 - `yarn dev` (or `yarn start`) — dev server at http://localhost:5173/react-portfolio/
 - `yarn build` — `tsc` typecheck, then production build to `dist/`
 - `yarn preview` — serve the built `dist/`
-- `yarn deploy` — builds (via `predeploy`) and publishes `dist/` to the `gh-pages` branch. Live at https://germanyn.github.io/react-portfolio/ (`base` in `vite.config.ts` must match the repo subpath).
+- Deploy: pushing to `master` runs `.github/workflows/deploy.yml` (tests, build, GitHub Pages deploy via Actions; also runnable by hand). Live at https://germanyn.github.io/react-portfolio/ (`base` in `vite.config.ts` must match the repo subpath).
 
 - `yarn coverage` — single run with V8 coverage (text summary + `coverage/index.html`); fails below the thresholds in `vite.config.ts` (95% statements/functions/lines, 90% branches).
 - `yarn test` — Vitest in watch mode (jsdom + Testing Library); `yarn test --run` for a single run, `yarn test --run src/components/SpireMap.test.tsx` or `-t "name"` for one test.

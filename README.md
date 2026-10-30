@@ -21,7 +21,7 @@ yarn dev      # http://localhost:5173/react-portfolio/
 | `yarn preview` | Serve the built `dist/` |
 | `yarn test` | Vitest in watch mode (`yarn test --run` for a single run) |
 | `yarn coverage` | Tests with coverage; fails below the thresholds in `vite.config.ts` |
-| `yarn deploy` | Build and publish `dist/` to the `gh-pages` branch |
+| _push to `master`_ | GitHub Actions tests, builds and deploys to Pages |
 
 ## Editing content
 
