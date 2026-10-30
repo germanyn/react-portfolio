@@ -8,7 +8,7 @@ import Tags from './Tags'
 /** Projects shown as a Mega Man X–style stage select. */
 export default function StageSelect() {
   const { t } = useTranslation()
-  const [selectedImage, setSelectedImage] = useState<ProjectImage | null>(null)
+  const [gallery, setGallery] = useState<{ images: ProjectImage[]; index: number } | null>(null)
   const strings = (key: string) => t(key, { returnObjects: true }) as string[]
 
   return (
@@ -19,6 +19,7 @@ export default function StageSelect() {
           const captions = strings(`${key}.images`)
           const achievements = strings(`${key}.achievements`)
           const linkLabel = t(`${key}.link`)
+          const images = project.images.map((url, i) => ({ url, description: captions[i] ?? project.title }))
 
           return (
             <article
@@ -45,25 +46,22 @@ export default function StageSelect() {
               <div
                 className={`mt-4 grid grid-cols-3 gap-2 ${project.displayAsMobile ? '' : '[&>:first-child]:col-span-full'}`}
               >
-                {project.images.map((url, i) => {
-                  const image = { url, description: captions[i] ?? project.title }
-                  return (
-                    <button
-                      key={url}
-                      type="button"
-                      className={`group cursor-zoom-in overflow-hidden border-2 border-black bg-black ${project.displayAsMobile ? 'aspect-9/16' : 'aspect-16/10'}`}
-                      onClick={() => setSelectedImage(image)}
-                      aria-label={t('projects.expandImage', { description: image.description })}
-                    >
-                      <img
-                        src={url}
-                        alt={image.description}
-                        loading="lazy"
-                        className="size-full object-cover object-top saturate-85 transition duration-250 group-hover:scale-105 group-hover:saturate-100"
-                      />
-                    </button>
-                  )
-                })}
+                {images.map((image, i) => (
+                  <button
+                    key={image.url}
+                    type="button"
+                    className={`group cursor-zoom-in overflow-hidden border-2 border-black bg-black ${project.displayAsMobile ? 'aspect-9/16' : 'aspect-16/10'}`}
+                    onClick={() => setGallery({ images, index: i })}
+                    aria-label={t('projects.expandImage', { description: image.description })}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.description}
+                      loading="lazy"
+                      className="size-full object-cover object-top saturate-85 transition duration-250 group-hover:scale-105 group-hover:saturate-100"
+                    />
+                  </button>
+                ))}
               </div>
 
               <p className="mt-4 mb-2 text-muted">{t(`${key}.description`)}</p>
@@ -92,7 +90,12 @@ export default function StageSelect() {
           )
         })}
       </div>
-      <ImageDialog image={selectedImage} onClose={() => setSelectedImage(null)} />
+      <ImageDialog
+        images={gallery?.images ?? []}
+        index={gallery?.index ?? null}
+        onIndexChange={index => setGallery(current => current && { ...current, index })}
+        onClose={() => setGallery(null)}
+      />
     </>
   )
 }

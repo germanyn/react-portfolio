@@ -43,6 +43,8 @@ const pt: Translation = {
     achievements: 'Conquistas desbloqueadas',
     expandImage: 'Ampliar imagem: {{description}}',
     close: 'Fechar',
+    previousImage: 'Imagem anterior',
+    nextImage: 'Próxima imagem',
     items: {
       almode: {
         description:

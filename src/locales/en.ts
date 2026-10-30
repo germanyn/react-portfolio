@@ -41,6 +41,8 @@ const en = {
     achievements: 'Achievements unlocked',
     expandImage: 'Expand image: {{description}}',
     close: 'Close',
+    previousImage: 'Previous image',
+    nextImage: 'Next image',
     items: {
       almode: {
         description:
